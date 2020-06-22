@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Etch-a-Sketch</title>
+  <meta charset="UTF-8"/>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Etch-A-Sketch</h1>
+    <div class ="container"></div>
+    <button id ="reset">Reset</button>
+
+</body>
+
+<script>
+    const container = document.querySelector('.container');
+    const reset = document.querySelector('#reset');
+    let grid = 16;
+
+    let div = document.querySelectorAll('.undrawn', '.drawnBlack');
+
+// Makes the first grid when the page first loads
+    function createfirstGrid () {
+        for (i = 0; i < grid * grid; i++){
+            const divs = document.createElement('div');
+            divs.classList.add('undrawn');
+            container.appendChild(divs);
+            divs.addEventListener('mouseover', () => {
+            divs.setAttribute('class', 'drawnBlack');
+            });
+        } div = document.querySelectorAll('.undrawn', '.drawnBlack')
+    
+    }
+// Reset button and prompt to make new grid dimensions
+    reset.addEventListener('click', () => {
+            grid = prompt( 'How many squares per side?' );
+            div.forEach(div => {
+                container.removeChild(div)
+            });
+            createGrid(grid);
+            });
+    createfirstGrid();
+
+// Makes a new grid, squares determined by prompt
+    function createGrid (grid) {
+        container.style.gridTemplateColumns = `repeat(${grid}, 1fr)`;
+        container.style.gridTemplateRows = `repeat(${grid}, 1fr)`;
+        for (i = 0; i < grid * grid; i++){
+            const divs = document.createElement('div');
+            divs.classList.add('undrawn');
+            container.appendChild(divs);
+            divs.addEventListener('mouseover', () => {
+            divs.setAttribute('class', 'drawnBlack');
+            });
+        } div = document.querySelectorAll('.undrawn', '.drawnBlack')
+    }
+
+
+</script>
+
+</html>
